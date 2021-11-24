@@ -172,6 +172,12 @@ client.on('message', msg => {
     }
 });
 
+client.on('guildMemberAdd', (member) => {
+    //targetChannel = Discord.Guild.channel.cache.get(realmGeneralChat);
+    member.guild.channels.get(errorsChannel).send(`Welcome to Realm of The Kings ${member.displayName}! Make sure to stay safe and stay cute. Have fun!`)
+    
+})
+
 function error_messages(st) {
     client.channels.cache.get(errorsChannel).send(st)
 }
