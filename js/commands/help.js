@@ -28,7 +28,7 @@ module.exports = {
                 } )
                 .setTimestamp()
                 .setFooter('Realm bot gives you kisses');
-            msg.channel.send(embed);
+            msg.reply(embed);
         }
         catch (err){
             error_messages(err)
