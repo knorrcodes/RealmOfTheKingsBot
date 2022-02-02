@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bot.js": "0.0.1",
+    "cross-fetch": "^3.1.5",
     "discord.js": "^12.5.1",
     "eslint": "^7.15.0",
     "node": "^15.3.0",

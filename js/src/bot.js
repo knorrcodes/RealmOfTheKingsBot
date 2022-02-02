@@ -4,7 +4,7 @@ const https = require('https')
 const {
     prefix,
     token
-} = require('./config.json');
+} = require('../config.json');
 const fs = require('fs')
 
 errorsChannel = '785640637952819261';
@@ -22,10 +22,10 @@ client.on('message', msg => {
     const command = args.shift().toLowerCase();
 
     client.commands = new Discord.Collection();
-    const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+    const commandFiles = fs.readdirSync('../commands/').filter(file => file.endsWith('.js'));
 
     for (const file of commandFiles) {
-        const cmd = require(`./commands/${file}`);
+        const cmd = require(`../commands/${file}`);
         client.commands.set(cmd.name, cmd);
     }
 

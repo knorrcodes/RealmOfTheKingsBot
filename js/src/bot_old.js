@@ -4,7 +4,7 @@ const https = require('https')
 const {
     prefix,
     token
-} = require('./config.json');
+} = require('../config.json');
 
 errorsChannel = '785640637952819261';
 realmGeneralChat = '436392919356801024';
