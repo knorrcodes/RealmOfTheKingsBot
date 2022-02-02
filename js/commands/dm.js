@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'dm',
 	description: 'dm',
-	execute(message, args) {
+	execute(msg, args) {
 		try {
             client.users.cache.get(`${msg.author.id}`).send(`You thought this wouldnt work now did you ${msg.author.username}`);
             } catch {

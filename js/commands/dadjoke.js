@@ -2,7 +2,7 @@
 module.exports = {
 	name: 'dadjoke',
 	description: 'dadjoke',
-	execute(message, args) {
+	execute(msg, args) {
         try{
             targetChannel = msg.guild.channels.cache.get(realmGeneralChat)
             https.get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', (response) => {

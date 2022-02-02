@@ -1,7 +1,7 @@
 module.exports = {
     name: 'happybday',
 	description: 'happybday',
-	execute(message, args) {
+	execute(msg, args) {
         try{
             let targetchannel = msg.guild.channels.cache.get(realmGeneralChat);
             let taggedUser = msg.mentions.users.first();

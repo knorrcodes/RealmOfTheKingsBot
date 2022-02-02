@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'mc',
 	description: 'mute channel',
-	execute(message, args) {
+	execute(msg, args) {
         if (msg.member.voice.channel) {
             let channel = msg.guild.channels.cache.get(msg.member.voice.channel.id);
            
