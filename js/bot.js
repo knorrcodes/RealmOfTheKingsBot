@@ -26,8 +26,6 @@ client.on('message', msg => {
 
     for (const file of commandFiles) {
         const cmd = require(`./commands/${file}`);
-        console.log(`cmd: ${cmd}`)
-        console.log(`file: ${file}`)
         client.commands.set(cmd.name, cmd);
     }
 
