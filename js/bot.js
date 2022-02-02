@@ -26,13 +26,14 @@ client.on('message', msg => {
 
     for (const file of commandFiles) {
         const cmd = require(`./commands/${file}`);
-        client.commands.set(command, cmd);
+        console.log(`cmd: ${cmd}`)
+        console.log(`file: ${file}`)
+        client.commands.set(cmd.name, cmd);
     }
-    console.log(`Command: ${command}`)
+
     if (!client.commands.has(command)) return;
 
     try {
-        console.log(client.commands)
         client.commands.get(command).execute(msg, args);
     } catch (error) {
         console.log(error);
