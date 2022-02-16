@@ -25,7 +25,8 @@ client.on('guildMemberAdd', member => {
             {
                 name: 'list of commands',
                 value: '//help, //me, //dadjoke, //medal, //findmeanewfield'
-            }
+            });
+    member.user.send(embed);
 })
 
 client.on('message', msg => {
