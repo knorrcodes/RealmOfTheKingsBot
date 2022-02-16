@@ -17,17 +17,18 @@ client.on('ready', () => {
 
 client.on('guildMemberAdd', member => {
     const embed = Discord.MessageEmbed()
-        .setColor('#0000FF')
-        .setTitle(`Welcome ${member.author.username} to Realm of The Kings!`)
-        .setAuthor('Realm of The Kings - Realm Bot')
-        .setDescripition(`Please use this message as a guide to the ROTK Server.`)
-        .addFields(
-            {
-                name: 'list of commands',
-                value: '//help, //me, //dadjoke, //medal, //findmeanewfield'
-            });
+    .setColor('#0000FF')
+    .setTitle(`Welcome ${member.author.username} to Realm of The Kings!`)
+    .setAuthor('Realm of The Kings - Realm Bot')
+    .setDescripition(`Please use this message as a guide to the ROTK Server.`)
+    .addFields(
+        {
+            name: 'list of commands',
+            value: '//help, //me, //dadjoke, //medal, //findmeanewfield'
+        });
     member.user.send(embed);
-})
+    });
+
 
 client.on('message', msg => {
     if (!msg.content.startsWith(prefix) || msg.author.bot) return;
