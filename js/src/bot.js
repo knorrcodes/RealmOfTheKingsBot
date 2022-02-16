@@ -9,6 +9,7 @@ const fs = require('fs')
 
 errorsChannel = '785640637952819261';
 realmGeneralChat = '436392919356801024';
+realmGuild = '402526389670117376';
 
 client.on('ready', () => {
     console.log(`logged in as ${client.user.tag}!`);
