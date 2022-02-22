@@ -24,6 +24,10 @@ module.exports = {
         else if (msg.author.id == '328204241657397249') {
             url = 'https://developers.medal.tv/v1/latest?userId=41045699&limit=1'
         }
+	//jon
+	else if (msg.author.id == '327953497871876098') {
+	    url = 'https://developers.medal.tv/v1/latest?userId=46512626&limit=1'
+	}
 
         auth = 'priv_7If9072CxwaDRD7HpmKjWJpx4hbBYRFH';
         fetch(
