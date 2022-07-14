@@ -21,11 +21,11 @@ module.exports = {
                 });
             })
             .on('error', (error) => {
-                error_messages(error);
+                console.log(error);
             });
         }
         catch (err) {
-            error_messages(err);
+            console.log(err);
         }
 	},
 };
