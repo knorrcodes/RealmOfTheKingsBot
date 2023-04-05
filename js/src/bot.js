@@ -1,15 +1,27 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const https = require('https')
-const {
-    prefix,
-    token
-} = require('../config.json');
+// const {
+//     prefix,
+//     token
+// } = require('../config.json');
 const fs = require('fs')
+const { SecretsManagerClient, GetSecretValueCommand } = require('@aws-sdk/client-secrets-manager')
 
 errorsChannel = '785640637952819261';
 realmGeneralChat = '436392919356801024';
 realmGuild = '402526389670117376';
+
+const ASMClient = new SecretsManagerClient({region: 'us-east-1'});
+const input = {
+    SecretId: "arn:aws:secretsmanager:us-east-1:410059817685:secret:discord-bot-xXYdze"
+};
+const command = new GetSecretValueCommand(input);
+const response = ASMClient.send(command).then(msg => console.log(msg));
+
+
+const token = "NzU1MTQzNjkyMzQzMzEyNDQ0.GyShMY.aZNk75y28-VSOwsXCPW1zJ2VNJXUHQ9Gf8MwzY";
+const prefix = "//"
 
 client.on('ready', () => {
     console.log(`logged in as ${client.user.tag}!`);
