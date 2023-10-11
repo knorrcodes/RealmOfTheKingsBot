@@ -1,6 +1,7 @@
 export function execute(msg, args) {
 	try {
-		msg.channel.send(`Username: ${msg.author.username}\nID: ${msg.author.id}`);
+		const resp = msg.channel.send(`Username: ${msg.author.username}\nID: ${msg.author.id}`);
+		return resp
 	} catch {
 		error_messages("Error in //me command")
 	}

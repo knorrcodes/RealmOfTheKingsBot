@@ -19,25 +19,20 @@ client.on('message', msg => {
 
     const args = msg.content.slice(discord_prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
-    console.log(command)
 
     client.commands = new Discord.Collection();
-    const commandFiles = fs.readdirSync('/Users/e148654/Documents/Personal/discord_bot/js/commands').filter(file => file.endsWith('.js'));
-    for (const file of commandFiles) {
-        console.log(file)
-        const cmd = import (`../commands/${file}`);
-        client.commands.set(command, cmd);
-    }
-    console.log("BEFORE")
-    if (!client.commands.has(command)) return;
-    console.log("AFTER")
-
+    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
     try {
-        console.log("EXECUTING");
-        import(`../commands/${command}.js`).execute((msg, args) => {
-            console.log("DONE1");
-        });
-        console.log("DONE2");
+        if ( commandFiles.includes(`${command}.js`) ) {
+            import (`../commands/${command}.js`).then(
+                funct => {
+                    console.log(funct.execute(msg, args));
+                }
+            )
+        }
+        else
+            msg.reply(`Doesnt look like we currently have a command for ${discord_prefix}${command}!`)
+
     } catch (error) {
         console.log(error);
         msg.reply("There was an error trying to execute that command!");
