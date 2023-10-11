@@ -1,15 +1,13 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const https = require('https')
-const {
-    prefix,
-    token
-} = require('../config.json');
-const fs = require('fs')
+import Discord from 'discord.js';
+import fs from 'fs';
 
-errorsChannel = '785640637952819261';
-realmGeneralChat = '436392919356801024';
-realmGuild = '402526389670117376';
+import { execute } from '../commands/ping.js';
+import { discord_token, discord_prefix } from "../util/get_secret.js"    
+
+const client = new Discord.Client();
+const errorsChannel = '785640637952819261';
+const realmGeneralChat = '436392919356801024';
+const realmGuild = '402526389670117376';
 
 client.on('ready', () => {
     console.log(`logged in as ${client.user.tag}!`);
@@ -17,63 +15,32 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    if (!msg.content.startsWith(prefix) || msg.author.bot) return;
+    if (!msg.content.startsWith(discord_prefix) || msg.author.bot) return;
 
-    const args = msg.content.slice(prefix.length).trim().split(/ +/);
+    const args = msg.content.slice(discord_prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
+    console.log(command)
 
     client.commands = new Discord.Collection();
-    const commandFiles = fs.readdirSync('../commands/').filter(file => file.endsWith('.js'));
-
+    const commandFiles = fs.readdirSync('/Users/e148654/Documents/Personal/discord_bot/js/commands').filter(file => file.endsWith('.js'));
     for (const file of commandFiles) {
-        const cmd = require(`../commands/${file}`);
-        client.commands.set(cmd.name, cmd);
+        console.log(file)
+        const cmd = import (`../commands/${file}`);
+        client.commands.set(command, cmd);
     }
-
+    console.log("BEFORE")
     if (!client.commands.has(command)) return;
+    console.log("AFTER")
 
     try {
-        client.commands.get(command).execute(msg, args);
+        console.log("EXECUTING");
+        import(`../commands/${command}.js`).execute((msg, args) => {
+            console.log("DONE1");
+        });
+        console.log("DONE2");
     } catch (error) {
         console.log(error);
         msg.reply("There was an error trying to execute that command!");
     }
 });
-client.login(token);
-
-
-
-
-
-
-
-
-
-
-// jons tiny penis command
-    // else if (command === 'tinypenisplease') {
-    //     msg.channel.send("Here you go...", {
-    //         files: [
-    //             "images/jknop2.PNG"
-    //         ]
-    //     });
-    // }
-
-
-    
-
-
-
-// client.on('guildMemberAdd', (member) => {
-//     //targetChannel = Discord.Guild.channel.cache.get(realmGeneralChat);
-//     member.guild.channels.get(errorsChannel).send(`Welcome to Realm of The Kings ${member.displayName}! Make sure to stay safe and stay cute. Have fun!`)
-    
-// });
-
-// function error_messages(st) {
-//     client.channels.cache.get(errorsChannel).send(st);
-// }
-
-// function sleep (time) {
-//     return new Promise((resolve) => setTimeout(resolve, time));
-//   }
+client.login(discord_token);

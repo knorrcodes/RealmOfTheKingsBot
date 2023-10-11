@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "a bot for discord",
   "main": "bot.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Darrin Knorr",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.427.0",
     "bot.js": "0.0.1",
     "cross-fetch": "^3.1.5",
     "discord.js": "^12.5.1",
