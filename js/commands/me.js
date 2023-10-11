@@ -1,11 +1,8 @@
-module.exports = {
-	name: 'me',
-	description: 'me',
-	execute(msg, args) {
-		try {
-            msg.channel.send(`Username: ${msg.author.username}\nID: ${msg.author.id}`);
-        } catch {
-            error_messages("Error in //me command")
-        }
-	},
-};
+export function execute(msg, args) {
+	try {
+		const resp = msg.channel.send(`Username: ${msg.author.username}\nID: ${msg.author.id}`);
+		return resp
+	} catch {
+		error_messages("Error in //me command")
+	}
+}
