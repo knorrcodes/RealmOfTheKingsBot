@@ -6,3 +6,4 @@ keys
 *.pem
 *.ppk
 *.env
+*.csv
