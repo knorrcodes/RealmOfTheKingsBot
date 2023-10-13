@@ -1,7 +1,6 @@
 import Discord from 'discord.js';
 import fs from 'fs';
 
-import { execute } from '../commands/ping.js';
 import { discord_token, discord_prefix } from "../util/get_secret.js"    
 
 const client = new Discord.Client();
@@ -21,7 +20,7 @@ client.on('message', msg => {
     const command = args.shift().toLowerCase();
 
     client.commands = new Discord.Collection();
-    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+    const commandFiles = fs.readdirSync('../commands').filter(file => file.endsWith('.js'));
     try {
         if ( commandFiles.includes(`${command}.js`) ) {
             import (`../commands/${command}.js`).then(
